@@ -58,7 +58,7 @@ def main(request, course_prefix, course_suffix, slug):
 
         grouppable_page = page.image
         parent_info = grouppable_page.contentgroup_set.all()
-        if parent_info:           # fill contentgroup_info for edit mode
+        if parent_info:                     # fill contentgroup_info for edit mode
             parent_info = parent_info[0]    # not necessarily true, but gets us the group_id
             group_id    = parent_info.group_id
             parent_info = ContentGroup.objects.get(group_id=group_id, level=1) # this is the parent for real
@@ -89,12 +89,13 @@ def main(request, course_prefix, course_suffix, slug):
 
     return render_to_response(template,
                               {
+                               'PREFIX':              course_prefix,
+                               'SUFFIX':              course_suffix,
+                               'COURSE_TITLE':        course.title,
                                'common_page_data':    common_page_data,
-                               'page':                page,
                                'is_logged_in':        is_logged_in,
+                               'page':                page,
                                'contentgroup_info':   contentgroup_info,
-                               'contentsection_list': full_contentsection_list, 
-                               'full_index_list':     full_index_list,
                                'sections':            sections,
                               },
                                context_instance=RequestContext(request))
