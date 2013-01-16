@@ -80,22 +80,16 @@ def main(request, course_prefix, course_suffix, slug):
     else:
         template = 'additional_pages/view.html'
         
-    course = common_page_data['course']
-
-    if request.user.is_authenticated():
-        is_logged_in = 1
-    else:
-        is_logged_in = 0
+    ready_section = page.section
+    if ready_section and ready_section.mode == "draft":
+        ready_section = ready_section.image
 
     return render_to_response(template,
                               {
-                               'PREFIX':              course_prefix,
-                               'SUFFIX':              course_suffix,
-                               'COURSE_TITLE':        course.title,
-                               'common_page_data':    common_page_data,
-                               'is_logged_in':        is_logged_in,
-                               'page':                page,
-                               'contentgroup_info':   contentgroup_info,
-                               'sections':            sections,
+                               'common_page_data':  common_page_data,
+                               'page':              page,
+                               'ready_section':     ready_section,
+                               'contentgroup_info': contentgroup_info,
+                               'sections':          sections,
                               },
                                context_instance=RequestContext(request))
