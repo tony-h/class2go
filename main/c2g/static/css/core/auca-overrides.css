@@ -1,0 +1,160 @@
+
+/* Homepage Styles
+-------------------------------------------------- */
+
+.body-content {
+    min-height:500px;
+}
+
+body.home {
+    background:#E3E9EB;;
+}
+
+.home .hero-header {
+    background:
+		url(/static/graphics/core/auca/en.gif) no-repeat, 
+		url(/static/graphics/core/auca/aucalogo.jpg) no-repeat right top,  
+		url(/static/graphics/core/auca/bg2.gif) repeat;
+	height: 118px;
+}
+
+.home-unit {
+	padding:0;
+}
+
+.course {
+	border: 2px solid #284872;
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	overflow: hidden;
+	margin-left: -15px;
+}
+
+.instructor-info {
+	margin-top: -15px;
+}
+
+.course-image {
+	float: left;
+	margin-right: 20px;
+}
+
+.course-summary {
+	overflow: hidden;
+}
+
+.course-info {
+	margin: 20px;
+}
+
+
+
+.container {
+	
+}
+
+.instructor-name {
+
+}
+.instructor-title {
+
+}
+
+.image-container {
+
+}
+
+/* Header
+-------------------------------------------------- */
+#global-header-home {
+    background:#FFE373;
+	color: #043A6B;
+}
+
+#global-header-home a {
+	color: #043A6B;
+}
+
+#global-header-course {
+    background:#8C1515;
+	color: #FFF;
+}
+
+#global-header-course a {
+        color: #FFF;
+}
+
+
+.auca-header-text{
+	padding: 0 0 25px 25px;
+    height:11px;
+    display:block;
+    overflow:hidden;
+	font-size: 12pt;
+}
+
+
+/* Footer
+-------------------------------------------------- */
+#global-footer-home {
+    background:#FFE373;
+    width:100%;
+	color: #000;
+	border-top: 2px solid #1C3F94;
+	padding: 0;
+	
+	position: fixed;
+	bottom: 0;
+	padding: 0;
+}
+
+#global-footer-home a {
+    color: #820000;
+}
+
+#global-footer-home .vcard {
+    color:#043A6B;
+}
+
+#global-footer-home p {
+	margin-top: 0;
+}
+
+#global-footer-home .row  {
+   	padding: 10px 0 0 35px;
+}
+
+.class2go {
+	top: 25px;	
+	padding: 0;
+}
+
+/* Course footer style overrides */
+
+#global-footer {
+	padding: 0;
+}
+
+#global-footer  .row{
+   	padding: 10px 0 0 35px;
+	color: #FFF;
+}
+
+#global-footer a {
+    color: #FFF;
+}
+
+
+/* Course stuff
+-------------------------------------------------- */
+.ui-resizable-helper { 
+	border: 1px dotted gray; 
+}
+.resizable {
+	display:block; width:850px; height:530px; padding:10px; border:2px solid gray; overflow:hidden; position:relative; 
+}
+
+iframe.resizable{
+	width:100%; height:100%; 
+}
