@@ -132,6 +132,8 @@ class Course(TimestampMixin, Stageable, Deletable, models.Model):
     institution_only = models.BooleanField(default=False)
     share_to = models.ManyToManyField("self",symmetrical=False,related_name='share_from',null=True, blank=True)
 
+    #Added for AUCA -Tony
+    google_group = models.TextField(blank=True)
     
     # Since all environments (dev, draft, prod) go against ready piazza, things will get
     # confusing if we get collisions on course ID's, so we will use a unique ID for Piazza.

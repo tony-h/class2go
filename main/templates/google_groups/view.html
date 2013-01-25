@@ -1,0 +1,73 @@
+{% extends "course_base.html" %}
+{% load url from future %}
+
+{% block course_page_title %}Forums (<a href="{% url 'courses.views.main' common_page_data.course_prefix common_page_data.course_suffix %}">{{common_page_data.course.title}}</a>){% endblock course_page_title %}
+
+{% block m_column_content %}
+
+
+<script type="text/javascript">
+    
+    var csrftoken = '{{csrf_token}}';
+
+</script>
+	<div id="c2g_layout_m_column" class="span11">
+
+    {% if common_page_data.is_course_admin and common_page_data.course_mode == "draft" %}
+
+    <h3>Configure Google Groups</h3>
+      <form name="update_form" action="{% url 'courses.google_groups.actions.update' common_page_data.course_prefix common_page_data.course_suffix %}" method="POST" enctype="multipart/form-data">
+		<ol style="list-style: none;">
+			<li><strong>Step 1</strong>: Create your new google group:  <a id="googleGroupAnchor" href="https://groups.google.com/forum/#!creategroup" target="_blank">https://groups.google.com/forum/#!creategroup</a></li>
+				<ul>
+					<li><strong>Suggested Group Name:</strong> AUCA - {{common_page_data.course.title}} ({{common_page_data.course_suffix}}) </li>
+					<li><strong>Suggested Group email address:</strong> {{recommended_google_group_name}} </li>
+					<li><strong>Group description:</strong> Enter a descripion of this group or its purpose </li>
+					<li><strong>Group type:</strong> Recomended to set to <strong>Web forum</strong>.  Please note that this still allows users to interact using e-mail</li>
+					<li><strong>Basic permissions:</strong> Recomended to uncheck <strong>Anyone</strong> to restrict the posts to only the group participants.</li>
+					<li>Click the Create Button</li>
+				</ul>
+			<li><strong>Step 2</strong>: Update the form below with the address of the Google Group</li>
+			<li><strong>Step 3</strong>: To make forums active, click <em>Save and Set as Ready</em>. To keep the forum hidden, click <em>Save as Draft</em></li>
+		</ol>
+        <fieldset class="well">
+			<div class="fieldWrapper ">
+				<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+              <label for="id_group_name">Set or update address of Google Group</label>
+              <input id="id_group_name" type="text" name="group_name" value="{{common_page_data.course.google_group}}" maxlength="1024"/> @ googlegroups.com
+			  {% if common_page_data.course.google_group != "" %}
+			  <p>View your group outside of Class2Go: <a href="https://groups.google.com/forum/#!forum/{{common_page_data.course.google_group}}" target="_blank">https://groups.google.com/forum/#!forum/{{common_page_data.course.google_group}}</a><p>
+			  {% endif %}
+			<div>		
+		</fieldset>
+		<div class="form-actions">
+		  <input type="submit" name="action" value="Save and Set as Ready" class="btn btn-primary" />
+		  <input type="submit" name="action" value="Save as Draft" class="btn" />
+		</div>
+		  </form>
+	  {% else %}
+	    {% if common_page_data.course.google_group == "" %}
+		<p>The forums are not yet active</p>
+		{% else %}
+		<iframe id="gg_forum_embed"
+			src="javascript:void(0)"
+			scrolling="no"
+			frameborder="0"
+			width="100%"
+			height="700">
+		</iframe>
+		<script type="text/javascript">
+			document.getElementById('gg_forum_embed').src =
+				'https://groups.google.com/forum/embed/?place=forum/{{common_page_data.course.google_group}}'
+				// Disable parenturl for localhost
+				+ '&showsearch=true&showpopout=true&showtabs=false&hideforumtitle=true&theme=default'{% if "localhost" in host %};
+				{% else %}
+				+ '&parenturl=' + encodeURIComponent(window.location.href);
+				{% endif %}
+		</script>
+		{% endif %}
+	</div>
+	  {% endif %}
+
+{% endblock m_column_content %}
+

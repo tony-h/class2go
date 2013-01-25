@@ -1,15 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import Context, loader
 from django.template import RequestContext
 from courses.actions import auth_view_wrapper
 from courses.forums.forms import PiazzaAuthForm
 from c2g.models import PageVisitLog
-from database import PIAZZA_ENDPOINT, PIAZZA_KEY, PIAZZA_SECRET
+from database import PIAZZA_ENDPOINT, PIAZZA_KEY, PIAZZA_SECRET, WHICH_FORUM
 from OAuthSimple import OAuthSimple
 
 @auth_view_wrapper
 def view(request, course_prefix, course_suffix):
+
+    #Switcher for different forums (this should be changed to a per-course setting)
+    if (WHICH_FORUM == "google-groups"):
+        return redirect('courses.google_groups.views.view', course_prefix, course_suffix)
+
     # Only use the ready course (for the piazza_id) since Piazza has no notion
     # of draft/live.
     course = request.common_page_data['ready_course']
