@@ -1,0 +1,28 @@
+
+
+#chat-box {
+    float: right;
+    margin-bottom: 0px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+	width: 275px;
+	background: white;
+}
+
+#out {
+    height: 400px;
+    overflow-y: scroll;
+    padding-left: 10px;	
+}
+input[name="message"] {
+	width: 195px;
+}
+#out p {
+	font-family: Monospace;
+}
+
+#out .date {
+	float: right;
+	font-size: 0.7em;
+}

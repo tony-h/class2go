@@ -1,6 +1,7 @@
 import logging
 
 from database import AWS_STORAGE_BUCKET_NAME
+from settings import CHAT_SOCKJS_PORT, CHAT_SOCKJS_CHANNEL
 from django.core.cache import get_cache
 
 from c2g.models import AdditionalPage, CacheStat, ContentSection, Course
@@ -89,6 +90,8 @@ def get_common_page_data(request, prefix, suffix):
         'course_info_pages':course_info_pages,
         'content_sections':content_sections,
         'aws_storage_bucket_name':AWS_STORAGE_BUCKET_NAME,
+        'chat_socket_port': CHAT_SOCKJS_PORT,
+        'chat_socket_channel': CHAT_SOCKJS_CHANNEL,
         # These are the parameters that prevent caching page_data in its
         # entirety, based only on course
         'course_mode':     course_mode,

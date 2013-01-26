@@ -1,0 +1,22 @@
+			<link rel="stylesheet" href="/static/css/chat/main.css">
+
+			<script>
+			var SOCK = {
+			  host: location.hostname,
+			  port: {{ common_page_data.chat_socket_port }},
+			  channel: '{{ common_page_data.chat_socket_channel }}'
+			};
+			</script>
+			<script src="/static/js/chat/vendor/sockjs-0.3.2.min.js"></script>
+			<script src="/static/js/chat/plugins.js"></script>
+			<script src="/static/js/chat/main.js"></script>
+			<form id="chat-box">
+				<div id="accordion" >
+					<h3>Chat Box (click to expand/collapse)</h3>
+					<div id="out"></div>
+					<input type="hidden" name="name" value="{{ user.first_name }} {{ user.last_name }}" />
+					<input type="hidden" name="course_prefix" value="{{ common_page_data.course_prefix }}" />
+					<input type="hidden" name="course_suffix" value="{{ common_page_data.course_suffix }}" />
+				</div>
+				<input name="message" /> <input type="submit" value="Submit"/ >
+			</form>
