@@ -264,7 +264,9 @@ INSTALLED_APPS = (
                       'db_scripts',
                       'convenience_redirect',
                       'exception_snippet',
-                       #'reversion',
+                      'courses.chat',
+                      'django_sockjs_tornado_server',
+                      #'reversion',
                       )
 if INSTANCE != "prod":
     INSTALLED_APPS += (
@@ -273,6 +275,13 @@ if INSTANCE != "prod":
                         'django_coverage',
                        )
 
+
+# Chat settings
+CHAT_SOCKJS_PORT = 9999
+CHAT_SOCKJS_CHANNEL = 'echo'
+CHAT_SOCKJS_CLASSES = (
+    'courses.chat.sockserver.ChatConnection',
+)
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
