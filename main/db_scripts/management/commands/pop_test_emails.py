@@ -12,12 +12,7 @@ class Command(BaseCommand):
             self.stderr.write('No Test Course, so bailing out')
             return
         for (name,email) in [
-                             #('sef','sefklon@gmail.com'),
-                             ('jbau','jbau@stanford.edu'),
-                             #('david','dcadams@stanford.edu'),
-                             #('wescott','mwescott@stanford.edu'),
-                             #('sherif','halawa@stanford.edu'),
-                             #('jane','jinpa@stanford.edu')
+                             ('auca.class2go','auca.class2go@gmail.com'),
                              ]:
             for i in range(100):
                 try:

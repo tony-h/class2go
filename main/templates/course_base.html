@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{common_page_data.course.title}} | Stanford Online{% endblock %}
+{% block title %}{{common_page_data.course.title}} | AUCA Class2Go{% endblock %}
 {% load url from future %}
 
 {% block page_title %}
@@ -137,5 +137,10 @@
 	<p> </p>
 	
 </div>
+	{% block chatbox %}
+		{% if common_page_data.course_mode != 'draft' and common_page_data.is_course_member %}
+			<!-- {% include "chat/chat_snippet.html" %} -->
+		{% endif %}
+	{% endblock chatbox %}
 
 {% endblock content %}

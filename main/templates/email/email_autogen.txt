@@ -4,5 +4,5 @@
 
 {% endautoescape %}
 ----
-This email was automatically sent from Stanford Online for {{ course.title }}.
+This email was automatically sent from AUCA Class2Go for {{ course.title }}.
 {{ url }}

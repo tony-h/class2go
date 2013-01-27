@@ -105,7 +105,7 @@ def email_members_old(request, course_prefix, course_suffix):
     if request.method == "POST":
         form = EmailForm(data=request.POST)
         if form.is_valid():
-            sender = request.common_page_data['course'].title + ' Staff <class2go-noreply@cs.stanford.edu>'
+            sender = request.common_page_data['course'].title + ' Staff <no-reply@mail.auca.kg>'
             
             recipient_qset = User.objects.none() #get recipients in a QuerySet
             

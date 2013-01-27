@@ -68,7 +68,7 @@ MANAGERS = ADMINS
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Asia/Bishkek'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -95,13 +95,13 @@ USE_L10N = True
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = 'http://localhost/git/' + APP + '-files/uploads/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/opt/' + APP + '/static/'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -117,6 +117,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/VertrigoServ/www/git/' + APP + '-files/static/',
 )
 
 # List of finder classes that know how to find static files in
@@ -266,7 +267,7 @@ INSTALLED_APPS = (
                       'exception_snippet',
                       'courses.chat',
                       'django_sockjs_tornado_server',
-                      #'reversion',
+                       #'reversion',
                       )
 if INSTANCE != "prod":
     INSTALLED_APPS += (
@@ -410,17 +411,17 @@ except NameError:
 
 # Email Settings
 
-SERVER_EMAIL = 'noreply@class.stanford.edu'
+SERVER_EMAIL = 'no-reply@mail.auca.kg'
 
 # For Production, or if override is set, actually send email
 if PRODUCTION or EMAIL_ALWAYS_ACTUALLY_SEND:
-    DEFAULT_FROM_EMAIL = "noreply@class.stanford.edu" #probably change for production
+    DEFAULT_FROM_EMAIL = 'no-reply@mail.auca.kg'
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = "email-smtp.us-east-1.amazonaws.com"
-    EMAIL_PORT = 587
-    EMAIL_HOST_USER = SES_SMTP_USER
-    EMAIL_HOST_PASSWORD = SES_SMTP_PASSWD
-    EMAIL_USE_TLS = True
+    EMAIL_HOST = '10.1.1.3'
+    EMAIL_PORT = 25
+    EMAIL_HOST_USER = 'host'
+    EMAIL_HOST_PASSWORD = 'pass'
+    EMAIL_USE_TLS = False
 #Otherwise, send email to a file in the logging directory
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'

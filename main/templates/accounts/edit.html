@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Stanford Online | Edit Profile{% endblock title %}
+{% block title %}AUCA Class2Go | Edit Profile{% endblock title %}
 
 {% block m_column_content %}
 <div id="c2g_layout_m_column" class="span6">
@@ -9,7 +9,7 @@
     </div>
 </div>
     {% if user.is_authenticated %}
-        <p>Need help? Contact <a href="mailto:c2g-techsupport@class.stanford.edu">c2g-techsupport@class.stanford.edu</a></p>
+        <p>Need help? Contact <a href="mailto:auca.class2go@gmail.com">auca.class2go@gmail.com</a></p>
         <form name="edit profile form-vertical" action="{% url 'accounts.views.save_edits' %}" method="POST">
             {% csrf_token %}
             {{uform.as_p}}
@@ -19,8 +19,7 @@
     {% else %}
     <h3> Please login to see profile information: </h3>
     <p>
-    <a class="btn" href="{% url 'shib_login' %}?next={{ request.get_full_path }}">Stanford WebAuth</a>
-    <a class="btn" href="{% url 'auth_login' %}?next={{ request.get_full_path }}">Class2Go Login (Public course students)</a>
+		<a class="btn" href="{% url 'auth_login' %}?next={{ request.get_full_path }}">Class2Go Login (Public course students)</a>
     </p>
     {% endif %}
 </div>

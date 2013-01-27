@@ -11,13 +11,13 @@ The site record is used to create self-reference URLs. For example,
 will make all local URLs reference http://localhost:8888 and the words 
 'Test Instance' should appear in the browser titlebar.
 
-The arguments default to 'class.stanford.edu' and 'Stanford Online', respectively.
+The arguments default to 'class2go.auca.kg' and 'AUCA Class2Go', respectively.
     """
 
     def handle(self, *args, **options):
 
-        domainname = 'class.stanford.edu'
-        sitename = 'Stanford Online'
+        domainname = 'class2go.auca.kg'
+        sitename = 'AUCA Class2Go'
         if len(args) == 1:
             domainname = args[0]
         elif len(args) == 2:

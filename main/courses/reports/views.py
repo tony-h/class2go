@@ -90,7 +90,7 @@ def generate_report(request):
     course_handle = request.POST["course_handle"]
     course_handle_pretty = course_handle.replace('--','-')
     
-    email_message = "The report is attached. You can also download it by going to the reports page under Course Administration->Reports, or by visiting https://class.stanford.edu/%s/browse_reports." % course_handle.replace('--', '/')
+    email_message = "The report is attached. You can also download it by going to the reports page under Course Administration->Reports, or by visiting https://class2go.auca.kg/%s/browse_reports." % course_handle.replace('--', '/')
     attach_reports_to_email = True
     
     if report_type == 'dashboard':
@@ -102,7 +102,7 @@ def generate_report(request):
         email_title = "[Class2Go] Video Full Report for %s %s" % (course_handle_pretty, slug)
         # TODO: Remove the following message and attachment flag override after report email attachment is fixed
         attach_reports_to_email = False
-        email_message = "The report has been generated. You can download it by going to the reports page under Course Administration->Reports, or by visiting https://class.stanford.edu/%s/browse_reports." % course_handle.replace('--', '/')
+        email_message = "The report has been generated. You can download it by going to the reports page under Course Administration->Reports, or by visiting https://class2go.auca.kg/%s/browse_reports." % course_handle.replace('--', '/')
         req_reports = [{'type': 'video_full', 'slug': slug}]
         
     elif report_type == 'video_summary':
@@ -124,7 +124,7 @@ def generate_report(request):
         email_title = "[Class2Go] Assessment Full Report for %s %s" % (course_handle_pretty, slug)
         # TODO: Remove the following message  and attachment flag override after report email attachment is fixed
         attach_reports_to_email = False
-        email_message = "The report has been generated. You can download it by going to the reports page under Course Administration->Reports, or by visiting https://class.stanford.edu/%s/browse_reports." % course_handle.replace('--', '/')
+        email_message = "The report has been generated. You can download it by going to the reports page under Course Administration->Reports, or by visiting https://class2go.auca.kg/%s/browse_reports." % course_handle.replace('--', '/')
         req_reports = [{'type': 'assessment_full', 'slug': slug}]
     
     elif report_type == 'assessment_summary':

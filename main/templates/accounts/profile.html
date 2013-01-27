@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load url from future %}
-{% block title %} User Profile | Stanford Online {% endblock title %} 
+{% block title %} User Profile | AUCA Class2Go {% endblock title %} 
  
 {% block m_column_content %}
 <div id="c2g_layout_m_column" class="span12">
@@ -54,8 +54,7 @@
     {% else %}
     <h3> Please login to see profile information: </h3>
     <p>
-    <a class="btn" href="{% url 'shib_login' %}?next={{ request.get_full_path }}">Stanford WebAuth</a>
-    <a class="btn" href="{% url 'auth_login' %}?next={{ request.get_full_path }}">Class2Go Login (Public course students)</a>
+    <a class="btn" href="{% url 'auth_login' %}?next={{ request.get_full_path }}">AUCA Class2Go Login</a>
     </p>
     {% endif %}
 

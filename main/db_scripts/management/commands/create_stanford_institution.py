@@ -5,14 +5,14 @@ from c2g.models import Institution
 
 
 class Command(BaseCommand):
-    help = "Run this command on initial setup of an instance to create the Stanford institution."
+    help = "Run this command on initial setup of an instance to create the AUCA institution."
 
     def handle(self, *args, **options):
         institution = Institution(
-                                  title = "Stanford",
-                                  country = "USA",
-                                  city = "Palo Alto",
-                                  domains = "stanford.edu")
+                                  title = "AUCA",
+                                  country = "Kyrgyzstan",
+                                  city = "Bishkek",
+                                  domains = "class2go.auca.kg")
                                   
         institution.save()
         print "Institution created successfully"
