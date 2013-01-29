@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 db-dumps/
 main/database.py
 venv_c2g
@@ -33,6 +34,8 @@ sophi-venv
 .idea
 =======
 main/settings.py
+=======
+>>>>>>> Removed settings.py
 main/database.py
 venv_c2g
 
