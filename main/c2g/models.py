@@ -535,7 +535,7 @@ class File(TimestampMixin, Stageable, Sortable, Deletable, models.Model):
     def dl_link(self):
         filename = self.file.name
         if is_storage_local():
-            url = get_site_url() + self.file.storage.url(filename)
+            url = self.file.storage.url(filename)
         else:
             storecache = get_cache("file_store")
             storecache_key = filename.replace(' ','%20')[-240:]   # memcache no spaces in cache key, char limit
@@ -1034,7 +1034,7 @@ class Video(TimestampMixin, Stageable, Sortable, Deletable, models.Model):
                 return ""
             if is_storage_local():
                 # FileSystemStorage returns a path, not a url
-                loc_raw = get_site_url() + self.file.storage.url(videoname)
+                loc_raw = self.file.storage.url(videoname)
             else:
                 loc_raw = self.file.storage.url_monkeypatched(videoname,
                     response_headers={'response-content-disposition': 'attachment'})
@@ -1055,7 +1055,7 @@ class Video(TimestampMixin, Stageable, Sortable, Deletable, models.Model):
         if is_storage_local():
             # FIXME: doesn't work on local sites yet
             print "DEBUG: Multiple download links don't work on local sites yet, sorry." 
-            return [('large', get_site_url() + mystore.url(myname), self.file.size, '')]
+            return [('large', mystore.url(myname), self.file.size, '')]
         else:
             # XXX: very S3 specific
             urlof = mystore.url_monkeypatched
