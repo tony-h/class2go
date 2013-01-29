@@ -23,7 +23,7 @@ INSTANCE = "jenkins"
 
 # Put your name and email address here, so Django serious errors can come to you
 ADMINS = (
-        ('AUCA Class2Go', 'auca.class2go@gmail.com')
+        ('AUCA Class2Go', 'class2go@mail.auca.kg')
         )
 
 # Secrets used for S3 - Sef

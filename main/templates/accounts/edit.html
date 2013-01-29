@@ -9,7 +9,7 @@
     </div>
 </div>
     {% if user.is_authenticated %}
-        <p>Need help? Contact <a href="mailto:auca.class2go@gmail.com">auca.class2go@gmail.com</a></p>
+        <p>Need help? Contact <a href="mailto:class2go@mail.auca.kg">class2go@mail.auca.kg</a></p>
         <form name="edit profile form-vertical" action="{% url 'accounts.views.save_edits' %}" method="POST">
             {% csrf_token %}
             {{uform.as_p}}

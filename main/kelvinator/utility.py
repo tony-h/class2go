@@ -125,7 +125,7 @@ def notify(task, notify_buf, notify_addr, prefix, suffix, filename, store_path):
     body += "\n"
     body += "\n".join(notify_buf)
 
-    send_mail(subject, body, "auca.class2go@gmail.com", [ notify_addr, ])
+    send_mail(subject, body, "class2go@mail.auca.kg", [ notify_addr, ])
 
 
 

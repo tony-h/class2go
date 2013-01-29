@@ -170,7 +170,7 @@ def course_email_with_celery(hash_for_msg, to_list,  throttle=False, course_titl
     (plaintext, err_from_stderr) = p.communicate(input=msg.html_message.encode('utf-8')) #use lynx to get plaintext
     staff_email = 'no-reply@mail.auca.kg'
     if course_handle:
-        staff_email = 'auca.class2go@gmail.com' # TODO: Update if we need this feature
+        staff_email = 'class2go@mail.auca.kg' # TODO: Update if we need this feature
     course_title_no_quotes = re.sub(r'"', '', course_title) # strip out all quotes
     from_addr = '"%s" Course Staff <%s>' % (course_title_no_quotes, staff_email) #make certain that we quote the name part of the email address
 
