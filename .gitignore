@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 db-dumps/
 main/database.py
 venv_c2g
@@ -30,3 +31,37 @@ class2go-venv/
 sophi-venv
 
 .idea
+=======
+main/settings.py
+main/database.py
+venv_c2g
+
+django-class2go
+
+django-class2go/*
+
+*~
+
+*.pyc
+
+#*#
+
+*.swp
+
+.DS_Store
+
+js/demorun.js~
+
+js/quizrun.js~
+
+problem-sets/from-cware-dev2/problem_set_json.tgz
+
+problem-sets/quizzes/Advanced-Maxent/test_json_load.html~
+
+nohup.out
+
+class2go-venv/
+sophi-venv
+
+.idea
+>>>>>>> Added settings.py
