@@ -160,7 +160,7 @@ ROOT_URLCONF = 'urls'
 try:
     LOCAL_CACHE_LOCATION
 except NameError:
-    LOCAL_CACHE_LOCATION = "/opt/class2go"
+    LOCAL_CACHE_LOCATION = '/VertrigoServ/www/git/' + APP + '-files/cache/'
 
 try:
     FILE_CACHE_TIME
@@ -411,17 +411,17 @@ except NameError:
 
 # Email Settings
 
-SERVER_EMAIL = 'no-reply@mail.auca.kg'
+SERVER_EMAIL = AUCA_SERVER_EMAIL
 
 # For Production, or if override is set, actually send email
 if PRODUCTION or EMAIL_ALWAYS_ACTUALLY_SEND:
-    DEFAULT_FROM_EMAIL = 'no-reply@mail.auca.kg'
+    DEFAULT_FROM_EMAIL = AUCA_DEFAULT_FROM_EMAIL
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = '10.1.1.3'
-    EMAIL_PORT = 25
-    EMAIL_HOST_USER = 'host'
-    EMAIL_HOST_PASSWORD = 'pass'
-    EMAIL_USE_TLS = False
+    EMAIL_PORT = AUCA_EMAIL_PORT
+    EMAIL_HOST = AUCA_EMAIL_HOST
+    EMAIL_HOST_USER = AUCA_EMAIL_HOST_USER
+    EMAIL_HOST_PASSWORD = AUCA_EMAIL_HOST_PASSWORD
+    EMAIL_USE_TLS = AUCA_EMAIL_USE_TLS
 #Otherwise, send email to a file in the logging directory
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
