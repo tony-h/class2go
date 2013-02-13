@@ -49,7 +49,10 @@ urlpatterns = patterns('',
     url(r'^hiring/?$', 'courses.landing.views.hiring'),
 
     url(r'^maint$', 'c2g.views.maintenance'),
-                       
+
+    # AUCA's URLs (Added by Tony)
+    url(r'', include('urls_auca')),
+    
     # Get server epoch
     url(r'^server_epoch/?$', 'c2g.views.server_epoch'),
     

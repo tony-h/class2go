@@ -130,6 +130,8 @@ class Course(TimestampMixin, Stageable, Deletable, models.Model):
     faq = models.TextField(blank=True)
     logo = models.FileField(upload_to=get_file_path,null=True)
  
+    #Added for AUCA -Tony
+    google_group = models.TextField(blank=True)
     
     # Since all environments (dev, draft, prod) go against ready piazza, things will get
     # confusing if we get collisions on course ID's, so we will use a unique ID for Piazza.

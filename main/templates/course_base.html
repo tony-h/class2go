@@ -154,4 +154,11 @@
         {% block r_column_content %}{% endblock %}
     </div>
 </div>
+
+{% block chatbox %}
+	{% if common_page_data.course_mode != 'draft' and common_page_data.is_course_member %}
+		<!-- {% include "chat/chat_snippet.html" %} -->
+	{% endif %}
+{% endblock chatbox %}
+
 {% endblock content %}
