@@ -18,14 +18,14 @@
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/core/bootstrap.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/core/responsive.css" />
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/themes/ui-lightness/jquery-ui.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/core/ui-lightness/jquery-ui.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/core/body.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/core/divs.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/core/{{ SITE_NAME_SHORT }}-styles.css" />
     <!--[if IE 7]>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome-ie7.css">
     <![endif]-->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/core/jquery-1.7.2.min.js"></script>
     <!--[if lte IE 8]>
         <script type="text/javascript" src="{{ STATIC_URL }}js/core/respond.min.js"></script>
         <script type="text/javascript">
@@ -34,7 +34,7 @@
             });
         </script>
     <![endif]-->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/core/jquery-1.8.22.ui.min.js"></script>
     {% endblock top_scripts %}
     {% block addl_stylesheets %}{% endblock addl_stylesheets %}
     {% block addl_head_scripts %}{% endblock addl_head_scripts %}
