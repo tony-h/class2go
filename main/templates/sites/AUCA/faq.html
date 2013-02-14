@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block title%} AUCA Class2Go | Help / FAQ{% endblock title %}
+{% block navbar %} {% endblock navbar %}
+
+{% block m_column_content %}
+
+<div class="row-fluid">
+    <div class="span8 faq">
+        <h3>Help / FAQ </h3>
+        <ol>
+            <li>
+                <h4 data-toggle="collapse" data-target="#chrome">I'm having trouble viewing content on the site!</h4>
+                <div id="chrome" class="collapse">
+                    <p>If you're having any difficulties viewing content on the site, try using Chrome or Firefox as your browser.</p>
+                </div>
+            </li>
+            
+            <li>
+                <h4 data-toggle="collapse" data-target="#profile">How do I change my password or other personal info?</h4>
+                <div id="profile" class="collapse">
+                    <p>If you want to change your password, or any of your profile information, click on your name in the top navigation bar.</p>
+                </div>
+            </li>
+
+            <li>
+                <h4 data-toggle="collapse" data-target="#speed">How do I watch the videos sped up or slowed down?</h4>
+                <div id="speed" class="collapse">
+                    <p>If you disable Flash in your browser, you should get the HTML5 YouTube player when you view a video, and if you click on "Settings" (the cog near the bottom right of your video player), you'll find options to change the speed.</p>
+                </div>
+            </li>
+
+            <li>
+                <h4 data-toggle="collapse" data-target="#unsubscribe">How do I remove myself from course email lists?</h4>
+                <div id="unsubscribe" class="collapse">
+                    <p>To stop receiving course-related email: </p>
+                    <ul>
+                        <li>Click your name in the upper right corner of your browser.</li>
+                        <li>Click Change Info in the lower left corner of your browser.</li>
+                        <li>Uncheck Receive emails from courses.</li>
+                        <li>Click Save Changes.</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <h4 data-toggle="collapse" data-target="#time">Do I have to watch the lectures at a particular time?</h4>
+                <div id="time" class="collapse">
+                    <p>No, you can watch them at a time that's convenient for you.</p>
+                </div>
+            </li>
+
+            <li>
+                <h4 data-toggle="collapse" data-target="#more">I've got ideas for more items to add to this page!</h4>
+                <div id="more" class="collapse">
+                    <p>Send suggestions for useful help items to <a href="mailto:class2go@mail.auca.kg">class2go@mail.auca.kg</a></p>
+                </div>
+            </li>
+        
+        </ol>
+    </div>
+</div>
+{% endblock m_column_content %}

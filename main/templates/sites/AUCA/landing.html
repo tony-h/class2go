@@ -1,0 +1,42 @@
+﻿{% extends "base.html" %}
+{% block title %}Available Courses | AUCA Class2Go{% endblock title %}
+{% block topnav %} {% endblock topnav %}
+{% block navbar %} {% endblock navbar %}
+{% load url from future %}
+
+{% block bodytag %}
+<body class="home">
+{% endblock bodytag %}
+
+
+{% block topcontent %}
+<div class="row-fluid hero-header">
+</div>
+{% endblock topcontent %}
+
+{% block m_column_content %}
+<div class="home-unit home-primary">
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <h3>Course List</h3>
+			</div>
+        </div>
+		<div class="row">
+			<div class="container">
+				<div class="course">
+					<div class="course-info">
+						<!-- Image copyright info: http://cdn1.iconfinder.com/icondetails/61632/128/earth_internet_network_icon -->
+						<img class="course-image" src="{{ STATIC_URL }}graphics/core/auca/internet_earth.png" alt="Internet globe" width="200" height="200" />
+						<h3><a href="{% url 'courses.views.main' 'web-programming' 'sp-2013' %}/preview">Introduction to Web Programming</a></h3>
+						<p class="instructor-info"><span class="instructor-name">Tony Hetrick: </span><span class="instructor-title"><i>Instructor, Software Engineering Department</i></span></p>
+					</div>
+					<div class="course-summary">
+						<p>This course will introduce students to the technologies and techniques of web programming where students will learn how to develop interactive web pages.  Students will learn programming for both client-side and server-side technologies.  This includes basic web technologies (HTML5, CSS), client-side technologies (JavaScript, AJAX), and server-side technologies (PHP,MySQL).  </p>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+{% endblock m_column_content %}

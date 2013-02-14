@@ -1,0 +1,16 @@
+{% load url from future %}
+
+{% if not request.session.headless %}
+<div {% ifequal request.path '/' %} id="global-footer-home" {% else %} id="global-footer" {% endifequal %} class="footer hidden-phone" >
+	<div class="row">
+		{% ifequal request.path '/' %}
+		<div class="row-fluid class2go">
+			<small><a href="http://class2go.stanford.edu">Powered by Class2Go</a></small>
+		</div>
+		{% endifequal %}
+		<div id="bottom-text" class="span10">
+			<p><strong><a href="http://class2go.auca.kg">AUCA Class2Go Home</a></strong> - <span class="vcard">American University of Central Asia, 205 Abdymomunov St., Bishkek, Kyrgyz Republic 720040</span></p>
+		</div>
+    </div>
+</div>
+{% endif %}

@@ -77,12 +77,11 @@ body.home {
 }
 
 #global-header-course {
-    background:#8C1515;
-	color: #FFF;
+    background:#8C1515;	
 }
 
 #global-header-course a {
-        color: #FFF;
+	color: #E9E6DF;
 }
 
 
@@ -142,7 +141,7 @@ body.home {
 }
 
 #global-footer a {
-    color: #FFF;
+    color: #E9E6DF;
 }
 
 

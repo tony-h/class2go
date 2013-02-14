@@ -44,18 +44,9 @@
 {% block bodytag %}<body class="{% block body_class %}{% endblock body_class %}">{% endblock bodytag %}
     <div id="viewport">
       {% if not request.session.headless %}
-        <div id="global-header">
-            <h1 class="stanford-logo">
-            	{% if SITE_NAME_SHORT == 'Stanford' %}
-                <a href="http://www.stanford.edu">
-                    <img src="/static/graphics/core/header-stanford-logo.png" width="160" alt="Stanford University">
-                    Stanford University
-                </a>
-                {% else %}
-                <a href="http://www.uwa.edu.au">{{ SITE_NAME_LONG }}</a>
-                {% endif %}
-            </h1>
-            <p id="skip-nav"><a href="#main-content" class="hidden-accessible">{% trans 'Jump to content' %}</a></p>
+        <div {% ifequal request.path '/' %} id="global-header-home" {% else %} id="global-header-course" {% endifequal %} >
+            <h1 class="auca-header-text"><a href="http://www.auca.kg">American University of Central Asia</a></h1>
+            <p id="skip-nav"><a href="#main-content" class="hidden-accessible">Jump to content</a></p>
         </div>
         {% block topcontent %}<div id="top-content"></div>{% endblock topcontent %}
       {% endif %}
