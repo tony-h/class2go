@@ -16,4 +16,9 @@ urlpatterns = patterns('',
     # Google groups
     url(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/google-groups/?$', 'courses.google_groups.views.view'),
     url(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/google-groups/update?$', 'courses.google_groups.actions.update'),
+    
+    # SMF (Simple Machine Forum)
+    url(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/smf/?$', 'courses.smf.views.view'),
+    url(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/smf/get_credentials?$', 'courses.smf.actions.get_credentials'),
+    
 )

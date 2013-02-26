@@ -1,0 +1,119 @@
+		
+		<iframe id="forum_embed"
+			src="javascript:void(0)"
+			scrolling="no"
+			frameborder="0"
+			width="100%">
+		</iframe>
+		
+		<script type="text/javascript">
+	
+			// Start the login process:
+			//	1) Get credentials from server
+			//	2) Use those to log the user in
+			//	3) Load the iframe with the user logged in
+			get_credentials()
+			
+			// Once loaded, resize iframe to fit the contents
+			$('#forum_embed').ready(size_iframe);
+		
+			// Get the username/password from the server about the 
+			// logged in user
+			function get_credentials() {
+
+				// Make our POST call get the login credentials
+				$.ajax({
+					type:"POST", 
+					url: 'smf/get_credentials', 
+					async:false, 
+					data: {
+						csrfmiddlewaretoken: csrftoken
+					},
+					error: ajaxFailure,
+					success: login_user
+				})
+			}
+			
+			// Registers the user on the forum
+			function login_user(ajax) {
+				
+				var credentials = JSON.parse(ajax);
+				
+				// Make our POST call to log the user into the forum
+				$.ajax({
+					type:"POST", 
+					url: credentials.url, 
+					async:false, 
+					data: {
+						action: 'login_user',
+						member_name: credentials.member_name,
+						password: credentials.password,
+						cookie_length: '525600',
+						csrfmiddlewaretoken: csrftoken
+					},
+					error: ajaxFailure,
+					success: load_iframe
+				})
+			}
+			
+			// Loads the iframe (with user already logged in if a result from AJAX call)
+			function load_iframe() {
+				$('#forum_embed').attr('src', 'http://class2go.auca.kg/forum');
+			}
+			
+			// If a failure, display error
+			// other args to use:  status, exception
+			function ajaxFailure(ajax) {
+				alert(ajax);
+			}	
+		
+		
+			// Dynamically resizes the iframe to fit the content
+			// Source code from: http://sonspring.com/journal/jquery-iframe-sizing
+			function size_iframe()
+			{
+				// Set specific variable to represent all iframe tags.
+				var iFrames = document.getElementsByTagName('iframe');
+
+				// Resize heights.
+				function iResize()
+				{
+					// Iterate through all iframes in the page.
+					for (var i = 0, j = iFrames.length; i < j; i++)
+					{
+						// Set inline style to equal the body height of the iframed content.
+						iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';
+					}
+				}
+
+				// Check if browser is Safari or Opera.
+				if ($.browser.safari || $.browser.opera)
+				{
+					// Start timer when loaded.
+					$('iframe').load(function()
+						{
+							setTimeout(iResize, 0);
+						}
+					);
+
+					// Safari and Opera need a kick-start.
+					for (var i = 0, j = iFrames.length; i < j; i++)
+					{
+						var iSource = iFrames[i].src;
+						iFrames[i].src = '';
+						iFrames[i].src = iSource;
+					}
+				}
+				else
+				{
+					// For other good browsers.
+					$('iframe').load(function()
+						{
+							// Set inline style to equal the body height of the iframed content.
+							this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
+						}
+					);
+				}
+			}
+
+		</script>

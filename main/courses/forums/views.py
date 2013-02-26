@@ -14,7 +14,9 @@ def view(request, course_prefix, course_suffix):
     #Switcher for different forums (this should be changed to a per-course setting)
     if (WHICH_FORUM == "google-groups"):
         return redirect('courses.google_groups.views.view', course_prefix, course_suffix)
-
+    elif (WHICH_FORUM == "smf"):
+        return redirect('courses.smf.views.view', course_prefix, course_suffix)
+        
     # Only use the ready course (for the piazza_id) since Piazza has no notion
     # of draft/live.
     course = request.common_page_data['ready_course']
