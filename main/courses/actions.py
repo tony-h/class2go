@@ -15,7 +15,6 @@ from c2g.models import *
 from random import randrange
 from datetime import datetime
 from os.path import basename
-import settings
 
 from django.utils.functional import wraps
 
@@ -28,16 +27,12 @@ def auth_view_wrapper(view):
 
         if user.is_authenticated() and not is_member_of_course(course, user):
             messages.add_message(request,messages.ERROR, 'You must be a member of the course to view the content you chose.')      
-            return HttpResponseRedirect(reverse('courses.views.main', args=(request.common_page_data['course_prefix'], request.common_page_data['course_suffix'],)) + "?join_next=" + request.path)
+            return HttpResponseRedirect(reverse('courses.views.main', args=(request.common_page_data['course_prefix'], request.common_page_data['course_suffix'],)))
 
         if not user.is_authenticated():
             messages.add_message(request,messages.ERROR, 'You must be logged-in to view the content you chose.')
-            if settings.SITE_NAME_SHORT == "Stanford":
-                if course.institution_only:
-                    return HttpResponseRedirect(reverse('shib_login') + "?next=" + request.path)
-                else:
-                    return HttpResponseRedirect(reverse('auth_login') + "?next=" + request.path)                        
-            return HttpResponseRedirect(reverse('default_login') + "?next=" + request.path)
+
+            return HttpResponseRedirect(reverse('courses.views.main', args=(request.common_page_data['course_prefix'], request.common_page_data['course_suffix'],)))
 
         return view(request, *args, **kw)
     return inner
@@ -83,6 +78,11 @@ def create_contentgroup_entries_from_post(request, postparam, ready_obj, ready_o
     """
     parent_tag, parent_id = None,None
     parent_tag = request.POST.get(postparam)
+
+    #Added by Tony: fix for when the parent tag is only a ,
+    if parent_tag == ",":
+        parent_tag = "none,none"
+
     if parent_tag and parent_tag != 'none,none':
         parent_tag,parent_id = parent_tag.split(',')
         parent_id = long(parent_id)

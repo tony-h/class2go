@@ -160,10 +160,10 @@ def impersonate(request,username):
 
 @never_cache
 def default_preview_login(request, course_prefix, course_suffix):
-    if settings.SITE_NAME_SHORT == "Stanford":
-        return standard_preview_login(request, course_prefix, course_suffix)
-    else:
-        return ldap_preview_login(request, course_prefix, course_suffix)
+    #if settings.SITE_NAME_SHORT == "Stanford":
+    return standard_preview_login(request, course_prefix, course_suffix)
+    #else:
+    #    return ldap_preview_login(request, course_prefix, course_suffix)
     
 @never_cache
 def default_login(request):
@@ -177,10 +177,10 @@ def default_login(request):
                             {'form': AuthenticationForm, 'next': request.GET.get('next', '/')},
                             context_instance=context)
     else:
-        if settings.SITE_NAME_SHORT == "Stanford":
-            return auth_login_view(request)
-        else:
-            return ldap_login(request, '', '')
+        #if settings.SITE_NAME_SHORT == "Stanford":
+        return auth_login_view(request)
+        #else:
+        #    return ldap_login(request, '', '')
 
 
 @never_cache
