@@ -24,6 +24,7 @@ def view(request, course_prefix, course_suffix):
      
     return render_to_response('smf/view.html', {
             'common_page_data': common_page_data,
+            'forum_address': 'http://class2go.auca.kg/forum/index.php?board=2.0',
     }, context_instance=RequestContext(request))
 
 
