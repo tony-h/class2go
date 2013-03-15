@@ -1,5 +1,6 @@
 # Django settings for Class2Go project.
 from os import path
+gettext = lambda s: s
 
 import django.template
 import djcelery
@@ -78,6 +79,11 @@ TIME_ZONE = 'Asia/Bishkek'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('ru', gettext('Russian')),
+    ('uk', gettext('Ukrainian')),
+)
 
 # These site variables are used for display in the product and can 
 # drive any conditional changes (display, etc).
@@ -157,6 +163,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
