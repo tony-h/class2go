@@ -31,7 +31,6 @@ urlpatterns = i18n_patterns('',
     
     # SMF (Simple Machine Forum)
     url(_(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/smf/?$'), 'courses.smf.views.view'),
-    url(_(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/smf/get_credentials?$'), 'courses.smf.actions.get_credentials'),
 )
 
 urlpatterns += patterns('',
@@ -81,6 +80,9 @@ urlpatterns += patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^c2g_admin/?', include(admin.site.urls)),  
+    
+    # Landing Page
+    url(r'^/?$', 'courses.landing.views.landing'),
 )
 
 #These URLs contain i18n/translatable strings
@@ -309,9 +311,6 @@ urlpatterns += i18n_patterns('',
     #Content Sharing
     url(_(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/copy_section/?$'), 'courses.content_sections.views.copy_content_form'),
     url(_(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/copy_section/send/?$'), 'courses.content_sections.views.copy_content'),
-                                             
-    # Landing Page
-    url(_(r'^/?$'), 'courses.landing.views.landing'),
 
     #Preview
     url(_(r'^(?P<course_prefix>[a-zA-Z0-9_-]+)/(?P<course_suffix>[a-zA-Z0-9_-]+)/preview/$'), 'courses.preview.views.preview'),

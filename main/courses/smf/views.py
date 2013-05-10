@@ -5,7 +5,8 @@ from django.template import RequestContext
 from courses.actions import auth_view_wrapper
 from c2g.models import PageVisitLog
 from courses.common_page_data import get_common_page_data
-import urllib, urllib2, random, string
+import urllib, urllib2, random, string, base64
+from cookielib import CookieJar
 
 #Address of the SMF API
 def smf_api_baseurl():
@@ -21,13 +22,23 @@ def view(request, course_prefix, course_suffix):
     #Register user if they don't exist in the forum
     if not user_exists(request.user):
         register_user(request.user)
-     
-    return render_to_response('smf/view.html', {
+
+    #Set the initial response (without cookies)
+    response = render_to_response('smf/view.html', {
             'common_page_data': common_page_data,
             'forum_address': 'http://class2go.auca.kg/forum/index.php?board=2.0',
     }, context_instance=RequestContext(request))
+        
+    #Log the user in and get the forum cookies
+    cookie_jar = login_user(request.user)
+    
+    #Set the cookies in the response
+    for cookie in cookie_jar:
+        response.set_cookie(cookie.name, cookie.value)
 
-
+    #Return the repsonse to the template with the user already logged in
+    return response
+    
 # Determines if a user exists or is registered in the SMF forum
 def user_exists(user):
 
@@ -72,3 +83,26 @@ def register_user(user):
     
     return returned_value
 
+#Logs the user in by setting the cookies based on the login credentials
+def login_user(user):
+   
+    #Encode the username and password to be sent to SMF API
+    #This was initial encoded since this data was sent via AJAX from the browser
+    encoded_user = base64.urlsafe_b64encode(user.username)
+    encoded_pass = base64.urlsafe_b64encode(user.password)
+
+    parameters = {	'action': 'login_user',
+                    'member_name': encoded_user,
+                    'password': encoded_pass,
+                    'cookie_length': '525600'
+                 }
+
+    #Assemble the parms
+    params = urllib.urlencode(parameters) 
+    
+    #Make the POST request and return the cookies
+    cj = CookieJar()
+    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
+    response = opener.open(smf_api_baseurl(), params)    
+
+    return cj

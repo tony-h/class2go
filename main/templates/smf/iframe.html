@@ -8,65 +8,12 @@
 		</iframe>
 		
 		<script type="text/javascript">
-	
-			// Start the login process:
-			//	1) Get credentials from server
-			//	2) Use those to log the user in
-			//	3) Load the iframe with the user logged in
-			get_credentials()
 			
-			// Once loaded, resize iframe to fit the contents
+			// Load the iframe with the default height
+			$('#forum_embed').attr('src', '{{forum_address}}');			
+			
+			// Resize iframe to fit the contents
 			$('#forum_embed').ready(size_iframe);
-		
-			// Get the username/password from the server about the 
-			// logged in user
-			function get_credentials() {
-
-				// Make our POST call get the login credentials
-				$.ajax({
-					type:"POST", 
-					url: 'smf/get_credentials', 
-					async:false, 
-					data: {
-						csrfmiddlewaretoken: csrftoken
-					},
-					error: ajaxFailure,
-					success: login_user
-				})
-			}
-			
-			// Registers the user on the forum
-			function login_user(ajax) {
-				
-				var credentials = JSON.parse(ajax);
-				
-				// Make our POST call to log the user into the forum
-				$.ajax({
-					type:"POST", 
-					url: credentials.url, 
-					async:false, 
-					data: {
-						action: 'login_user',
-						member_name: credentials.member_name,
-						password: credentials.password,
-						cookie_length: '525600',
-						csrfmiddlewaretoken: csrftoken
-					},
-					error: ajaxFailure,
-					success: load_iframe
-				})
-			}
-			
-			// Loads the iframe (with user already logged in if a result from AJAX call)
-			function load_iframe() {
-				$('#forum_embed').attr('src', '{{forum_address}}');
-			}
-			
-			// If a failure, display error
-			// other args to use:  status, exception
-			function ajaxFailure(ajax) {
-				alert(ajax);
-			}	
 		
 		
 			// Dynamically resizes the iframe to fit the content
