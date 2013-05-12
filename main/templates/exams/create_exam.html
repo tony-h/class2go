@@ -147,6 +147,8 @@
             <input id="grace_period" class="picker"  type="text" name="grace_period" value="" data-datetimepicker>
             <label class="control-label" for="hard_deadline">{% trans 'Hard Deadline' %}:*</label>
             <input id="hard_deadline" class="picker"  type="text" name="hard_deadline" value="" data-datetimepicker>
+            <label class="control-label" for="minutesallowed">{% trans 'Time Limit (in minutes) <br /> 0 mean no time limit' %}:</label>
+            <input id="minutesallowed" type="text" name="minutesallowed" value="" style="width: auto;">
         </div>
         <div class="atomic-unit well" id="penalties" >
             <label class="control-label" for="late_penalty">{% trans 'Late Penalty' %}:*</label>
@@ -690,6 +692,7 @@ age: 20,
                        slug:saved_slug,
                        due_date:$('input#due_date').val(),
                        grace_period:$('input#grace_period').val(),
+                       minutesallowed:$('#minutesallowed').val(),
                        partial_credit_deadline:$('input#hard_deadline').val(),
                        assessment_type:$('select#assessment_type').val(),
                        late_penalty:$('input#late_penalty').val(),
@@ -767,6 +770,7 @@ age: 20,
         $('input#due_date').val(prepop.due_date);
         $('input#grace_period').val(prepop.grace_period);
         $('input#hard_deadline').val(prepop.partial_credit_deadline);
+        $('input#minutesallowed').val(prepop.minutesallowed);
         $('select#assessment_type').val(prepop.assessment_type);
         $('input#late_penalty').val(prepop.late_penalty);
         $('input#num_subs_permitted').val(prepop.num_subs_permitted);

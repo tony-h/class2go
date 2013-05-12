@@ -180,6 +180,9 @@
     </noscript>
 
     <div id="exam-pane"{% if not single_question %} class="summative"{% endif %}>
+        <div id="exam-timer-container" style="display: none;">
+            <p><b>Time Remaining:</b> <span id="exam-timer"></span></p>
+        </div>
         <form>
         {{ exam.html_content }}
         </form>
@@ -224,7 +227,79 @@
     
     /* Do all the stuff below when page loads (~700 lines!) */
     $(document).ready(function () {
-                   
+		
+        /************************** start exam timer *******************************/
+
+		// Allows handling timed exam code (i.e. auto-submitting of exam)
+		timedExam = false;
+		
+	{% if allow_submit and exam.minutesallowed > 0 %}
+
+		// A better way to do this is to use the exam.timed bool property,
+		// but didn't want to modify the .py code for the other timed exam code
+		
+		timedExam = true;
+		$("#exam-timer-container").show();
+		startTimer();				
+
+	{% endif %}
+			
+		// Advances the exam timer and submits the exam when timer runs out
+		function startTimer() {
+		
+			var min;
+			var sec;
+			var examTimer = $("#exam-timer");
+			
+			// Set the initial time in the HTML and set the "timer to active"
+			if (examTimer.attr("active") != "true") {
+				examTimer
+					.text('{{exam.minutesallowed}}:00')
+					.attr("active", "true");
+			}
+
+			// Instead of using global vars, just reading the last set values from the HTML
+			var timeArray = examTimer.text().split(":");
+			min = timeArray[0];
+			sec = timeArray[1];
+			
+			if (sec > 0) {
+				sec--;
+			} else if (min > 0) {
+				min--;
+				sec = 59;
+			} else {
+				// Exam fininished, force the submission of it exam
+				examTimer.attr("active", "false");
+				examTimer.css("background-color", "yellow");
+				$("#submit-button").click();
+			}
+			
+			// format the number to add leading zeros (00:01 not 0:1)
+			min = formatNumber(min);
+			sec = formatNumber(sec);
+			
+			// Write the counter value to screen
+			var timeString = min + ":" + sec;
+			examTimer.text(timeString);
+			
+			// Pause here for 1000 ms and then call this function again
+			// if the time has not expired
+			if (examTimer.attr("active") == "true")
+				t = setTimeout(startTimer ,1000);
+		}
+
+		// Format the number to add leading zeros (00:01 not 0:1)
+		function formatNumber(i) {
+
+			if (i < 10)
+				i = "0" + parseInt(i);
+
+			return i;
+		}
+
+        /************************** end exam timer *******************************/
+				   
         var unsavedChanges = false; //variable flag to denote chnages have been made on page
                       
         {% if videotest %}
@@ -960,7 +1035,8 @@
         var fieldCollection = $('#exam-pane').find('input,textarea,select');
         var userAnswerObj = window.collectUserAnswers(fieldCollection);
 
-        if (__exam_type != "survey" && !userAnswerObj.answeredAll) {
+		// On timed exam don't allow student to confirm submission (this happens automatically)
+        if (__exam_type != "survey" && !userAnswerObj.answeredAll && !timedExam) {
             var userProceed = confirm("{% blocktrans with get_human_type=exam.get_human_type %}This will submit the entire {{ get_human_type }} and you haven't answered all questions. Still submit?{% endblocktrans %}");
             if (!userProceed) {
                 $('#submit-button').removeAttr('disabled');

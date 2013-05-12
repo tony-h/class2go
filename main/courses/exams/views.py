@@ -573,6 +573,7 @@ def save_exam_ajax(request, course_prefix, course_suffix, create_or_edit="create
     xmlImported = request.POST.get('xmlImported','')
     quizdown = request.POST.get('quizdown','')
     due_date = request.POST.get('due_date', '')
+    minutesallowed = request.POST.get('minutesallowed','')
     grace_period = request.POST.get('grace_period', '')
     partial_credit_deadline =  request.POST.get('partial_credit_deadline', '')
     late_penalty = request.POST.get('late_penalty', '')
@@ -582,6 +583,9 @@ def save_exam_ajax(request, course_prefix, course_suffix, create_or_edit="create
     section=request.POST.get('section','')
     invideo_val=request.POST.get('invideo','')
 
+    if minutesallowed == "":
+        minutesallowed = 0;
+    
     if invideo_val and invideo_val == "true":
         invideo = True
     else:
@@ -698,9 +702,11 @@ def save_exam_ajax(request, course_prefix, course_suffix, create_or_edit="create
                         xml_imported=xmlImported, quizdown=quizdown
                         )
 
+        exam_obj.minutesallowed = minutesallowed
+
         exam_obj.save()
         exam_obj.create_ready_instance()        
-
+        
         # Set parent/child relationships
         create_contentgroup_entries_from_post(request, 'parent', exam_obj.image, 'exam', display_style='list')
 
@@ -733,6 +739,7 @@ def save_exam_ajax(request, course_prefix, course_suffix, create_or_edit="create
             exam_obj.xml_imported=xmlImported
             exam_obj.quizdown=quizdown
             exam_obj.due_date=dd
+            exam_obj.minutesallowed = minutesallowed
             exam_obj.total_score=total_score
             exam_obj.assessment_type=assessment_type
             exam_obj.grace_period=gp
@@ -821,6 +828,7 @@ def edit_exam(request, course_prefix, course_suffix, exam_slug):
     data={'title':exam.title, 'slug':exam.slug, 'due_date':datetime.datetime.strftime(exam.due_date, "%m/%d/%Y %H:%M"),
           'grace_period':datetime.datetime.strftime(exam.grace_period, "%m/%d/%Y %H:%M"),
           'partial_credit_deadline':datetime.datetime.strftime(exam.partial_credit_deadline, "%m/%d/%Y %H:%M"),
+          'minutesallowed':exam.minutesallowed,
           'assessment_type':exam.assessment_type, 'late_penalty':exam.late_penalty, 'num_subs_permitted':exam.submissions_permitted,
           'resubmission_penalty':exam.resubmission_penalty, 'description':exam.description, 'section':exam.section.id,'invideo':exam.invideo,
           'metadata':exam.xml_metadata, 'htmlContent':exam.html_content, 'xmlImported':exam.xml_imported, 'quizdown':exam.quizdown}
