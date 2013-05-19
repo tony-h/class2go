@@ -177,9 +177,12 @@ class Command(BaseCommand):
         if not options['quiet']: 
             print "Videos found in database: %d " % len(dbVideoSet)
 
-        awsKey=getattr(settings, 'AWS_ACCESS_KEY_ID')
-        awsSecret=getattr(settings, 'AWS_SECRET_ACCESS_KEY')
-        awsBucket=getattr(settings, 'AWS_STORAGE_BUCKET_NAME')
+        # awsKey=getattr(settings, 'AWS_ACCESS_KEY_ID')
+        # awsSecret=getattr(settings, 'AWS_SECRET_ACCESS_KEY')
+        # awsBucket=getattr(settings, 'AWS_STORAGE_BUCKET_NAME')
+        awsKey='local'
+        awsSecret='local'
+        awsBucket='local'
 
         (storeVideoSet, storeManifestSet, storeSmallSet, storeLargeSet) = \
                 searchStorage(awsKey, awsSecret, awsBucket, options['class'], options['term'])

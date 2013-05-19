@@ -230,9 +230,11 @@ def kelvinate(store_path_raw, frames_per_minute_target=2, notify_addr=None):
 
     (store_path, course_prefix, course_suffix, video_id, video_filename) = splitpath(store_path_raw)
 
-    store_loc = "remote"
-    if getattr(settings, 'AWS_ACCESS_KEY_ID') == "local":
-        store_loc = "local"
+    #Only using local storage - Tony
+    store_loc = "local"
+    # store_loc = "remote"
+    # if getattr(settings, 'AWS_ACCESS_KEY_ID') == "local":
+        # store_loc = "local"
 
     work_dir = None
     try:
@@ -332,9 +334,11 @@ def resize(store_path_raw, target_raw, notify_addr=None):
 
     (store_path, course_prefix, course_suffix, video_id, video_file) = splitpath(store_path_raw)
 
-    store_loc = 'remote'
-    if getattr(settings, 'AWS_ACCESS_KEY_ID') == 'local':
-        store_loc = 'local'
+    #Only using local storage - Tony
+    store_loc = "local"
+    # store_loc = "remote"
+    # if getattr(settings, 'AWS_ACCESS_KEY_ID') == "local":
+        # store_loc = "local"
 
     work_dir = None
     try:
